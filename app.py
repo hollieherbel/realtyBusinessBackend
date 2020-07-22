@@ -54,7 +54,7 @@ def add_listing():
 
     record = Listing(address, city, state, zipcode)
     db.session.add(record)
-    db.session.commit
+    db.session.commit()
 
     return jsonify("Listing Added")
 
@@ -62,7 +62,7 @@ def add_listing():
 @app.route("/listing/get", methods=["GET"])
 def get_all_listings():
     all_listings = db.session.query(Listing).all()
-    return jsonify(characters_schema.dump(all_characters))
+    return jsonify(listings_schema.dump(all_listings))
 
 
 @app.route("/listing/get/<id>", methods=["GET"])
@@ -98,7 +98,7 @@ def update_listing_by_id(id):
 
         db.session.commit()
 
-        return jsonify("Listing Updated")
+    return jsonify("Listing Updated")
 
 
 
